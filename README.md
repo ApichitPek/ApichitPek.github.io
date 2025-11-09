@@ -5,7 +5,7 @@
   
 
 ## Certificates
-  -[Cybersecurity Fundamentals](Certificates/Certificates/Duangsa-Cybersecurity-Fundamentals-Cybersecurity-Fundamentals-APNIC-Academy.pdf)
+  -[Cybersecurity Fundamentals](Certificates/Cybersecurity-Fundamentals.pdf)
 
 
 ## Digital Badges
