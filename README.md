@@ -5,7 +5,7 @@
   
 
 ## Certificates
-  -[Cybersecurity Fundamentals](Certificates/Cybersecurity-Fundamentals.pdf)
+  [Cybersecurity Fundamentals](Certificates/Cybersecurity-Fundamentals.pdf)
 
 
 ## Digital Badges
