@@ -1,4 +1,4 @@
-#zone 
+# zone 
   + [A portion of the DNS namespace made up of a single domain or of a domain and subdomains that are administered as a single, separate entity.
     A particular name server is responsible for each zone. The name server stores all address mappings for the domain name space with the zone.
     It also answers client queries for those names.]
