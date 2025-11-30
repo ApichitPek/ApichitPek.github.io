@@ -9,6 +9,6 @@
 
 
 ## Digital Badges
-  +[zone]()
-  +[page]()
-  +[template]()
+  + [zone]()
+  + [page]()
+  + [template]()
