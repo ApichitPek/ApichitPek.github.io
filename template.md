@@ -1,4 +1,4 @@
-#template 
+# template 
   + [template	A user account template is a standard user account that you create to simplify creating accounts for other users with similar needs.]
 
 | User |meaning |
