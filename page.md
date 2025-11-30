@@ -1,4 +1,4 @@
-#page 
+# page 
   + [A contiguous, fixed-length block of virtual addresses. It is copied from memory to disk and back during paging
     operations. Windows 2000 uses 4 KB blocks to map physical and virtual memory addresses. SQL Server allocates
     database space in 8K pages.]
