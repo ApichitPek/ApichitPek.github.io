@@ -1,2 +1,2 @@
 # ใบรับรอง Cybersecurity Fundamentals
- ![Cybersecurity Certificate](../Cybersecurity-Fundamentals.png)
+ ![Cybersecurity Certificate](Certificates/Cybersecurity-Fundamentals.png)
