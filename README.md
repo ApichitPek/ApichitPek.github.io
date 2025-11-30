@@ -8,7 +8,7 @@
   + [Cybersecurity Fundamentals](Cybersecurity-Fundamentals)
 
 
-## Digital Badges
+## Meaning of the word
   + [zone](zone)
   + [page](page)
   + [template](template)
