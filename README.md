@@ -5,10 +5,10 @@
   
 
 ## Certificates
-  [Cybersecurity Fundamentals](Cybersecurity-Fundamentals)
+  + [Cybersecurity Fundamentals](Cybersecurity-Fundamentals)
 
 
 ## Digital Badges
-  + [zone]()
-  + [page]()
-  + [template]()
+  + [zone](zone)
+  + [page](page)
+  + [template](template)
