@@ -8,7 +8,7 @@
   + [Cybersecurity Fundamentals](Cybersecurity-Fundamentals)
 
 ## Steganography Online
-  + [Happy New Year Card 2026](Steganography Online)
+  + [Happy New Year Card 2026](Steganography-Online)
 
 ## Meaning of the word
   + [zone](zone)
