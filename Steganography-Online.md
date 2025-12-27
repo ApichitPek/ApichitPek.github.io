@@ -1,2 +1,2 @@
 # Steganography Online
- ![Card Happy New Year 2026](Steganography-Online/Newyear.png)
+ ![Card Happy New Year 2026](Steganography-Online/New-Year.png)
