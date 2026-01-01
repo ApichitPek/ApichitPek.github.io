@@ -7,7 +7,7 @@
 ## Certificates
   + [Cybersecurity Fundamentals](Cybersecurity-Fundamentals)
 
-## Lab 5.5.5 Configure a VPN Connection iPad
+## Security Pro Lab
   + [5.5.5 Configure a VPN Connection iPad](Configure-a-VPN-Connection-iPad)
 
 ## Steganography Online
