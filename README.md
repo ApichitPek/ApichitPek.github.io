@@ -7,6 +7,9 @@
 ## Certificates
   + [Cybersecurity Fundamentals](Cybersecurity-Fundamentals)
 
+## Lab 5.5.5 Configure a VPN Connection iPad
+  + [5.5.5 Configure a VPN Connection iPad](Configure-a-VPN-Connection-iPad)
+
 ## Steganography Online
   + [Happy New Year Card 2026](Steganography-Online)
 
