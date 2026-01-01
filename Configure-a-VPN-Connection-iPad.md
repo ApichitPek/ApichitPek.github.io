@@ -41,7 +41,7 @@
 
   ![Information](Lab-5.5.5/06-add-information.jpg)
 
-  + 7.จากนั้นกด ฉonnected เพื่อดูว่ามีการ connected ได้หรือไม่ ถ้าได้จะขึ้น connected ตามภาพด้านล่าง
+  + 7.จากนั้นกด Connected เพื่อดูว่ามีการ Connected ได้หรือไม่ ถ้าได้จะขึ้น Connected ตามภาพด้านล่าง
 
   ![Connected](Lab-5.5.5/07-connected.jpg)
 
