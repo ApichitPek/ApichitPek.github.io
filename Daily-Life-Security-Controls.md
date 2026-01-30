@@ -1,7 +1,8 @@
 # Security Controls ในชีวิตประจำวัน
- ![SC Daily Life](PDPA-picture/S__37462019.jpg)
-+
-ภาพนี้เป็นอีเมลแจ้งเตือนการลงชื่อเข้าใช้งานบัญชี Google ครั้งใหม่ ซึ่งหากเทียบกับตาราง Security Controls ภาพนี้จัดอยู่ในหมวด Technical Controls (การควบคุมทางเทคนิค) โดยทำหน้าที่หลักเป็น Detective (การตรวจจับ)
+
+ ![SC Daily Life](Daily-Life-Security-Controls/S__37478402.jpg)
+
++ ภาพนี้เป็นอีเมลแจ้งเตือนการลงชื่อเข้าใช้งานบัญชี Google ครั้งใหม่ ซึ่งหากเทียบกับตาราง Security Controls ภาพนี้จัดอยู่ในหมวด Technical Controls (การควบคุมทางเทคนิค) โดยทำหน้าที่หลักเป็น Detective (การตรวจจับ)
 
 # เหตุผลที่จัดอยู่ในหมวดนี้เป็นเพราะ
    # 1. เป็น Technical Control (การควบคุมทางเทคนิค) 
