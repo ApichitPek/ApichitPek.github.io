@@ -20,3 +20,6 @@
 
 ## git-wrapped
   + [git-wrapped 2025](Git-Wrapped.md)
+
+## PDPA-พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
+  + [PDPA 2562](PDPA-Picture.md)
