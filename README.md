@@ -1,5 +1,5 @@
 
-# Apichit Duangsa
+## Apichit Duangsa
 + Information Technology
 + Institute of Vocational Education : Central Region 5
   
@@ -23,3 +23,6 @@
 
 ## PDPA-พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
   + [PDPA 2562](PDPA-Picture.md)
+
+## Daily Life Security Controls
+  [Daily Life Security Controls](Daily-Life-Security-Controls.md)
