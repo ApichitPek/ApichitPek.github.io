@@ -25,4 +25,4 @@
   + [PDPA 2562](PDPA-Picture.md)
 
 ## Daily Life Security Controls
-  + [Daily Life Security Controls](Daily-Life-Security-Controls.md)
+  + [Daily Life Security Controls](Daily-Life-Security-Controls01.md)
