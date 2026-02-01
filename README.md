@@ -26,3 +26,4 @@
 
 ## Daily Life Security Controls
   + [Daily Life Security Controls](Daily-Life-Security-Controls01.md)
+  + [Daily Life Security Controls](Daily-Life-Security-Controls02.md)
