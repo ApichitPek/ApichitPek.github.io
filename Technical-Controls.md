@@ -1,4 +1,4 @@
-# Security Controls ในชีวิตประจำวัน
+# Technical Controls ในชีวิตประจำวัน
 
  ![SC Daily Life](Daily-Life-Security-Controls/S__37478402.jpg)
 
