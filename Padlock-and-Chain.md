@@ -1,6 +1,6 @@
-# Physical Controls ในชีวิตประจำวัน
+# Padlock and Chain
 
- ![SC Daily Life](Daily-Life-Security-Controls/S__37535747.jpg)
+ ![Padlock and Chain](Daily-Life-Security-Controls/S__37535747.jpg)
 
 + แม่กุญแจและโซ่คล้องประตู (Padlock and Chain) ซึ่งพบตอนที่ต้องการล็อกประตูเพื่อป้องกันไม่ให้บุคคลภายนอกเข้าถึงพื้นที่ภายในอาคารหรือห้อง
 + เป็นแบบ Preventative (การป้องกัน) เพราะทำหน้าที่เป็นอุปสรรคขัดขวางหรือยับยั้งไม่ให้เกิดเหตุการณ์บุกรุกขึ้นตั้งแต่แรก โดยการจำกัดการเข้าถึงทางกายภาพ

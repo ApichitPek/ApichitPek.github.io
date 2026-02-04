@@ -25,5 +25,5 @@
   + [PDPA 2562](PDPA-Picture.md)
 
 ## Daily Life Security Controls
-  + [Technical Controls](Technical-Controls.md)
-  + [Physical Controls](Physical-Controls.md)
+  + [Google Login Security Alert](Google-Login-Security-Alert.md)
+  + [Padlock and Chain](Padlock-and-Chain.md)

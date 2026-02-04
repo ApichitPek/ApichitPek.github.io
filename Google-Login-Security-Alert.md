@@ -1,6 +1,6 @@
-# Technical Controls ในชีวิตประจำวัน
+# Google Login Security Alert
 
- ![SC Daily Life](Daily-Life-Security-Controls/S__37478402.jpg)
+ ![Google Login Security Alert](Daily-Life-Security-Controls/S__37478402.jpg)
 
 + ระบบอีเมลแจ้งเตือนการลงชื่อเข้าใช้งาน (Google Login Security Alert) ซึ่งพบตอนที่มีการ Login เข้าสู่ระบบด้วยอุปกรณ์ใหม่หรือ Browser ใหม่ที่ระบบไม่คุ้นเคย
 + เป็นแบบ Detective (การตรวจจับ) เพราะทำหน้าที่เฝ้าระวังและแจ้งเตือนให้เจ้าของบัญชีทราบทันทีเมื่อมีกิจกรรมเกิดขึ้น เพื่อให้ตรวจสอบได้ว่าเป็นการกระทำของเจ้าของบัญชีจริงหรือไม่
