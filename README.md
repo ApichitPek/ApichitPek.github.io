@@ -6,6 +6,9 @@
 
 ## Certificates
   + [Cybersecurity Fundamentals](Cybersecurity-Fundamentals)
+  + [Gemini Certified Educator](gemini-educator)
+  + [Gemini Certified Faculty](gemini-faculty)
+  + [Gemini Certified University Student](gemini-student)  
 
 ## Meaning of the word
   + [zone](zone)
@@ -19,11 +22,11 @@
   + [Happy New Year Card 2026](Steganography-Online)
 
 ## git-wrapped
-  + [git-wrapped 2025](Git-Wrapped.md)
+  + [git-wrapped 2025](Git-Wrapped)
 
 ## PDPA-พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ.2562
-  + [PDPA 2562](PDPA-Picture.md)
+  + [PDPA 2562](PDPA-Picture)
 
 ## Daily Life Security Controls
-  + [Google Login Security Alert](Google-Login-Security-Alert.md)
-  + [Padlock and Chain](Padlock-and-Chain.md)
+  + [Google Login Security Alert](Google-Login-Security-Alert)
+  + [Padlock and Chain](Padlock-and-Chain)
