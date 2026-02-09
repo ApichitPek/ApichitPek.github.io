@@ -1,5 +1,5 @@
 # การจัดการช่องโหว่  Host Header Attack (Reset Poisoning)
-----------------------------------------------------------------
+---------------------------------------------------------------------
 # 1.เลือกช่องโหว่ Host Header Attack (Reset Poisoning)
 
 ![Host Header Attack (Reset Poisoning)](Web-Sec/P01.jpg)
