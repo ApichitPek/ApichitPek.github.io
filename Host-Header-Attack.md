@@ -25,7 +25,7 @@
 + เพื่อปิดช่องโหว่นี้อย่างสมบูรณ์ เราจะใช้ใช้วิธี Encode ข้อมูลก่อนการแสดงผลตามคำแนะนำของระบบ Help
 + จุดที่ต้องแก้ไข (ตัวอย่างบรรทัดที่ 38, 61 หรือ 124):
 + โค้ดเดิมที่มีปัญหา: echo $_SERVER['HTTP_HOST'];
-+ โค้ดที่แก้ไขแล้ว (Safe Code): ให้ใช้ฟังก์ชัน htmlspecialchars พร้อมกำหนดพารามิเตอร์ ENT_QUOTES เพื่อป้องกันการฉีดโค้ดเข้าไปใน HTML Attribute: echo htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, "utf-8");
++ โค้ดที่แก้ไขแล้ว (Safe Code): ให้ใช้ฟังก์ชัน htmlspecialchars พร้อมกำหนดพารามิเตอร์ ENT_QUOTES เพื่อป้องกันการฉีดโค้ดเข้าไปใน HTML Attribute: echo htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8');
 
 ![Help](Web-Sec/P05.jpg)
 
