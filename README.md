@@ -30,3 +30,6 @@
 ## Daily Life Security Controls
   + [Google Login Security Alert](Google-Login-Security-Alert)
   + [Padlock and Chain](Padlock-and-Chain)
+
+## Web Sec
+  + [Host Header Attack (Reset Poisoning)](Host-Header-Attack)
