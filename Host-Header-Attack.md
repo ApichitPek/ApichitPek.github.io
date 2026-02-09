@@ -64,6 +64,8 @@
 + ใส่ E-mail: เช่น alice@alice.com
 + กด Reset
 + ขึ้น Invalid user! หมายความว่าไม่มี Emailในระบบ แต่ระบบใช้งานได้ปกติ
++ ถ้าใส่ alice@alice.com'"><script>alert(1)</script>
++ ขึน Please enter a valid e-mail address! หมายความว่า โปรดป้อนที่อยู่อีเมลที่ถูกต้อง!
 
 ![test](Web-Sec/P11.jpg)
 
