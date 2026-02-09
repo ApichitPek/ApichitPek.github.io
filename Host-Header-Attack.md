@@ -64,12 +64,12 @@
 + ใส่ E-mail: เช่น alice@alice.com
 + กด Reset
 + ขึ้น Invalid user! หมายความว่าไม่มี Emailในระบบ แต่ระบบใช้งานได้ปกติ
-+ ถ้าใส่ alice@alice.com'"><script>alert(1)</script>
++ ถ้าใส่  ```alice@alice.com'"><script>alert(1)</script> ```
 + ขึน Please enter a valid e-mail address! หมายความว่า โปรดป้อนที่อยู่อีเมลที่ถูกต้อง!
 
 ![test](Web-Sec/P11.jpg)
 
 # สรุป
-+ สิ่งที่ทำ: ใช้ฟังก์ชัน htmlspecialchars ครอบตัวแปร ```$_SERVER["HTTP_HOST"] ```ในบรรทัดที่ 38, 61 และ 124 ของไฟล์ hostheader_1.php
++ สิ่งที่ทำ: ใช้ฟังก์ชัน htmlspecialchars ครอบตัวแปร ```$_SERVER["HTTP_HOST"] ``` ในบรรทัดที่ 38, 61 และ 124 ของไฟล์ hostheader_1.php
 + ผลลัพธ์: ผลสแกนใน RIPS ยืนยันว่าช่องโหว่ Cross-Site Scripting ลดลงจาก 3 จุดเหลือ 0 จุด
 + การทดสอบ: เมื่อลองกรอกอีเมล alice@alice.com ในหน้าเว็บจริง ระบบยังประมวลผลได้ถูกต้อง
