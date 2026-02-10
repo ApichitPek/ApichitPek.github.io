@@ -44,7 +44,7 @@
 # 8. ทดสอบ business function
 + ใส่ E-mail: เช่น alice@alice.com
 + กด Reset ขึ้น Invalid user! 
-+ ถ้าใส่ alice@alice.com'"><script>alert(1)</script>
++ ถ้าใส่ ```alice@alice.com'"><script>alert(1)</script>```
 + กด Rese ขึน Please enter a valid e-mail address! 
 + **แสดงว่าสดงว่าการแก้โค้ด เพื่อปิดช่องโหว่ ได้อย่างสมบูรณ์ โดยที่ระบบยังคงให้บริการรีเซ็ตรหัสผ่านและเปลี่ยนระดับความปลอดภัยได้ตาม Business Function เดิม**
 
