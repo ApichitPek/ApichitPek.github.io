@@ -1,75 +1,63 @@
 # การจัดการช่องโหว่  Host Header Attack (Reset Poisoning)
 ---------------------------------------------------------------------
-# 1.เลือกช่องโหว่ Host Header Attack (Reset Poisoning)
++ หน้าเว็บนี้คือส่วนของระบบ "Reset Password" โดย Business Function หลักคือการให้ผู้ใช้งานกรอกอีเมลเพื่อขอเปลี่ยนรหัสผ่านลับ (Secret) เมื่อกดปุ่ม "Reset" ระบบจะทำการส่งอีเมลที่มีลิงก์สำหรับตั้งรหัสผ่านใหม่ไปให้ผู้ใช้ตามอีเมลที่ระบุ
 
 ![Host Header Attack (Reset Poisoning)](Web-Sec/P01.jpg)
 
-# 2.เปิดหน้า RIPS ใน Browser 
-+ ใส่ Path: /var/www/html/bWAPP/hostheader_1.php
+# 2.และการทดสอบ และช่องโหว่
++ หน้าเว็บนี้มีช่องโหว่ที่เรียกว่า Host Header Attack (Reset Poisoning) ซึ่งเกิดจากการที่ระบบนำค่าจาก HTTP Host Header ที่ส่งมาจากเบราว์เซอร์ของผู้ใช้มาสร้างเป็น URL ในอีเมลโดยตรง
++ การทดสอบ: ผู้โจมตีสามารถปลอมแปลง Host Header ใน Request ให้เป็นเซิร์ฟเวอร์ของตนเอง (เช่น attacker.com) เมื่อระบบส่งเมลออกไป ลิงก์รีเซ็ตรหัสผ่านจะชี้ไปที่เซิร์ฟเวอร์ของผู้โจมตี ทำให้ผู้โจมตีสามารถดักจับ Token ลับของเหยื่อได้ทันที
 
-![RIPS Browser](Web-Sec/P02.jpg)
 
-# 3.กด Scan 
-+ RIPS จะแจ้งเตือน ช่องโหว 4 ตัวที่เจอ Cross-Site Scripting: 3 Session Fixation: 1
+# 3.การตรวจสอบด้วยเครื่องมือ (RIPS Scan)
++ เมื่อนำไฟล์ /var/www/html/bWAPP/hostheader_2.php ไปทำการสแกนด้วยเครื่องมือ RIPS ผลการวิเคราะห์ยืนยันว่าพบช่องโหว่ร้ายแรงจริงๆ ได้แก่
++ Protocol Injection: 1 จุด / Session Fixation: 1 จุด ในไฟล์ selections.php (ที่ถูกเรียกใช้)
 
-![Scan](Web-Sec/P03.jpg)
+![Scan](Web-Sec/P02.jpg)
 
-# 4. เราจะแก้ปัญหา Cross-Site Scripting 
-+ วิเคราะห์สาเหตุของปัญหาจากผลสแกน RIPS ที่คุณได้รับ ระบบแจ้งเตือนว่าข้อมูลจาก ``` $_SERVER['HTTP_HOST'] ``` ถูกส่งไปยังคำสั่ง echo โดยตรง ซึ่งในบริบทของความปลอดภัย ข้อมูลใน Host Header ถือเป็นข้อมูลที่ผู้ใช้ (หรือผู้โจมตี) สามารถปรับเปลี่ยนได้เองผ่านทาง HTTP Request
-    + ช่องโหว่ (Vulnerability): การนำข้อมูลที่ "สกปรก" (Tainted data) ไปแสดงผลบนหน้าเว็บโดยไม่มีการตรวจสอบหรือเข้ารหัส
-    + ผลกระทบ: ผู้โจมตีสามารถฝังโค้ด JavaScript เช่น ``` <script>alert('XSS')</script> ``` ลงใน Host Header เพื่อให้รันในเบราว์เซอร์ของผู้อื่นได้
+# 4. ปัญหา
++ ช่องโหว่ Session Fixation นอกจากปัญหาเรื่องการส่งเมลแล้ว RIPS ยังตรวจพบช่องโหว่ด้านการจัดการเซสชัน (Session Management) ในบรรทัดที่ 78 ของไฟล์ selections.php
++ ลักษณะของปัญหา (Vulnerability Concept) จุดที่เกิดปัญหา (Sensitive Sink): การเรียกใช้ฟังก์ชัน ```setcookie()```
++ สาเหตุ: ระบบมีการนำค่าจาก ```$_POST['security_level']``` มาสร้างเป็น Cookie โดยตรง ซึ่งในบางกรณีหากระบบยอมรับค่า Session ID จากตัวแปรที่ผู้ใช้ส่งมา (Source) จะทำให้เกิดช่องโหว่นี้ได้ 
++ ***เพิ่มเติม*** ผู้โจมตีสามารถ "กำหนด" หรือ "บังคับ" (Fixate) ให้เหยื่อใช้ Session ID ที่ผู้โจมตีทราบค่าอยู่แล้ว เมื่อเหยื่อทำการ Login สำเร็จ ผู้โจมตีก็จะสามารถใช้ Session ID เดียวกันนั้นสวมรอยเข้าสู่บัญชีของเหยื่อได้ทันที
 
-![Cross-Site Scripting](Web-Sec/P04.jpg)
+![Cross-Site Scripting](Web-Sec/P03.jpg)
 
-# 5.ขั้นตอนการแก้ไขโค้ด (The Patch) 
-+ เพื่อปิดช่องโหว่นี้อย่างสมบูรณ์ เราจะใช้ใช้วิธี Encode ข้อมูลก่อนการแสดงผลตามคำแนะนำของระบบ Help
-+ จุดที่ต้องแก้ไข (ตัวอย่างบรรทัดที่ 38, 61 หรือ 124):
-+ โค้ดเดิมที่มีปัญหา: ``` echo $_SERVER['HTTP_HOST']; ```
-+ โค้ดที่แก้ไขแล้ว (Safe Code): ให้ใช้ฟังก์ชัน htmlspecialchars พร้อมกำหนดพารามิเตอร์ ENT_QUOTES เพื่อป้องกันการฉีดโค้ดเข้าไปใน HTML Attribute: ``` echo htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES, 'UTF-8'); ```
+# 5.แนวทางการแก้ไขและป้องกัน (The Patch)
++ การแก้ไขที่ดีต้องทำในระดับโครงสร้างเพื่อป้องกันช่องโหว่หลายประเภทพร้อมกัน
+    + Output Encoding: การใช้ htmlspecialchars() จะช่วยแปลงตัวอักษรพิเศษอย่าง < > " ' & ให้กลายเป็น HTML entities (เช่น ```&lt;``` หรือ ```&quot;```) ซึ่งช่วยป้องกันทั้ง Cross-Site Scripting (XSS) และการแทรกคำสั่งแปลกปลอมในโปรโตคอลอีเมลครับ
+    + Defense in Depth: นอกจากการใช้ฟังก์ชันกรองข้อมูลแล้ว แนวทางที่ดีที่สุดสำหรับหน้า Reset Password คือการ ห้ามใช้ค่าจาก Header แต่ให้ใช้ค่าโดเมนที่ระบบกำหนดไว้เอง (Static/Hardcoded) ในทุกระดับความปลอดภัย เพื่อตัดโอกาสการโจมตีจากฝั่งผู้ใช้อย่างถาวร
 
-![Help](Web-Sec/P05.jpg)
+# 6.แก้ไขช่องโหว่
++ ทำการแก้ไขในไฟล์ selections.php ที่ path: /var/www/html/bWAPP/ 
++ เปลี่ยนมาใช้ตัวแปรพักค่า ($input_value) แล้วใช้ switch กำหนดค่าให้ตัวแปรใหม่ ($level_final) แทน การทำแบบนี้ทำให้ RIPS มั่นใจว่าค่าที่จะถูกเอาไปใช้ เป็นค่าที่เรากำหนดเอง (0, 1, 2) ไม่ใช่ค่าแปลกปลอมจากภายนอก
++ เพิ่มคำสั่ง session_regenerate_id(true);
++ ในคำสั่ง setcookie(...) เราเปลี่ยนพารามิเตอร์ตัวสุดท้ายจาก false เป็น true
 
-# 6.เชื่อมต่อ WinSCP
-+ ล็อกอินเข้าสู่เซิร์ฟเวอร์ Host ของ VirtualBox
+![WinSCP](Web-Sec/P04.jpg)
 
-![WinSCP](Web-Sec/P06.jpg)
+# 7.ทดสอบหลังการแก้ไข (Security Test)
++ ทำการสแกนซ้ำ จพพบว่าเหลือช่องโหว่แค่ 1 ตัว
 
-# 7.ให้เข้าไปที่โฟลเดอร์เก็บไฟล์เว็บ
-+ Path: /var/www/html/bWAPP/
-+ มองหาไฟล์ที่ชื่อเกี่ยวกับ Host Header = hostheader_1.php
+![Path](Web-Sec/P05.jpg)
 
-![Path](Web-Sec/P07.jpg)
-
-# 8.ไฟล์ hostheader_1.php แก้ไขที่เครื่องของเรา
-+ ปิดผ่าน VS Code เพื่อแก้ไขไฟล์
-+ มองหาบรรทัดที่มีคำสั่ง ``` echo $_SERVER['HTTP_HOST']; ```
-+ (ซึ่ง RIPS แจ้งเตือนในบรรทัดที่ 38, 61 และ 124)
-
-![VS Code](Web-Sec/P08.jpg)
-
-# 9.แก้ไข Code บรรทัดที่ 38, 61 และ 124
-
-![Edit](Web-Sec/P09.jpg)
-
-# 10.สแกน RIPS อีกครั้ง
-+ ใส่ Path: /var/www/html/bWAPP/hostheader_1.php
-+ กด Scan 
-+ RIPS จะแจ้งเตือน ช่องโหว่ 1 ตัวที่เจอ Session Fixation: 1
-+ แสดงว่าที่เราทำนั้นแก้ปัญหาช่องโหว่ Cross-Site Scripting: 3 ได้
-
-![Scan RIPS02](Web-Sec/P10.jpg)
-
-# 11.ทดสอบ
-+ เช็คว่าโหว่ Host Header Attack (Reset Poisoning)ที่เราแก้แล้วเว็บยังใช้งานได้ไหม
+# 8. ทดสอบ business function
 + ใส่ E-mail: เช่น alice@alice.com
+<<<<<<< HEAD
++ กด Reset ขึ้น Invalid user! 
++ ถ้าใส่ alice@alice.com'"><script>alert(1)</script>
++ กด Rese ขึน Please enter a valid e-mail address! 
++ **แสดงว่าสดงว่าการแก้โค้ด เพื่อปิดช่องโหว่ ได้อย่างสมบูรณ์ โดยที่ระบบยังคงให้บริการรีเซ็ตรหัสผ่านและเปลี่ยนระดับความปลอดภัยได้ตาม Business Function เดิม**
+=======
 + กด Reset
 + ขึ้น Invalid user! หมายความว่าไม่มี Emailในระบบ แต่ระบบใช้งานได้ปกติ
-+ ถ้าใส่ alice@alice.com'"><script>alert(1)</script>
++ ถ้าใส่  ```alice@alice.com'"><script>alert(1)</script> ```
 + ขึน Please enter a valid e-mail address! หมายความว่า โปรดป้อนที่อยู่อีเมลที่ถูกต้อง!
 
 ![test](Web-Sec/P11.jpg)
 
 # สรุป
-+ สิ่งที่ทำ: ใช้ฟังก์ชัน htmlspecialchars ครอบตัวแปร ```$_SERVER["HTTP_HOST"] ```ในบรรทัดที่ 38, 61 และ 124 ของไฟล์ hostheader_1.php
++ สิ่งที่ทำ: ใช้ฟังก์ชัน htmlspecialchars ครอบตัวแปร ```$_SERVER["HTTP_HOST"] ``` ในบรรทัดที่ 38, 61 และ 124 ของไฟล์ hostheader_1.php
 + ผลลัพธ์: ผลสแกนใน RIPS ยืนยันว่าช่องโหว่ Cross-Site Scripting ลดลงจาก 3 จุดเหลือ 0 จุด
 + การทดสอบ: เมื่อลองกรอกอีเมล alice@alice.com ในหน้าเว็บจริง ระบบยังประมวลผลได้ถูกต้อง
+>>>>>>> b0a590536d94a5222ad4684fa46fee8c8d30e99a
