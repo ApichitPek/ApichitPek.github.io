@@ -43,21 +43,7 @@
 
 # 8. ทดสอบ business function
 + ใส่ E-mail: เช่น alice@alice.com
-<<<<<<< HEAD
 + กด Reset ขึ้น Invalid user! 
 + ถ้าใส่ alice@alice.com'"><script>alert(1)</script>
 + กด Rese ขึน Please enter a valid e-mail address! 
 + **แสดงว่าสดงว่าการแก้โค้ด เพื่อปิดช่องโหว่ ได้อย่างสมบูรณ์ โดยที่ระบบยังคงให้บริการรีเซ็ตรหัสผ่านและเปลี่ยนระดับความปลอดภัยได้ตาม Business Function เดิม**
-=======
-+ กด Reset
-+ ขึ้น Invalid user! หมายความว่าไม่มี Emailในระบบ แต่ระบบใช้งานได้ปกติ
-+ ถ้าใส่  ```alice@alice.com'"><script>alert(1)</script> ```
-+ ขึน Please enter a valid e-mail address! หมายความว่า โปรดป้อนที่อยู่อีเมลที่ถูกต้อง!
-
-![test](Web-Sec/P11.jpg)
-
-# สรุป
-+ สิ่งที่ทำ: ใช้ฟังก์ชัน htmlspecialchars ครอบตัวแปร ```$_SERVER["HTTP_HOST"] ``` ในบรรทัดที่ 38, 61 และ 124 ของไฟล์ hostheader_1.php
-+ ผลลัพธ์: ผลสแกนใน RIPS ยืนยันว่าช่องโหว่ Cross-Site Scripting ลดลงจาก 3 จุดเหลือ 0 จุด
-+ การทดสอบ: เมื่อลองกรอกอีเมล alice@alice.com ในหน้าเว็บจริง ระบบยังประมวลผลได้ถูกต้อง
->>>>>>> b0a590536d94a5222ad4684fa46fee8c8d30e99a
