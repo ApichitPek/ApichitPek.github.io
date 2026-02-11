@@ -8,18 +8,24 @@
 + หน้าเว็บนี้มีช่องโหว่ที่เรียกว่า Host Header Attack (Reset Poisoning) ซึ่งเกิดจากการที่ระบบนำค่าจาก HTTP Host Header ที่ส่งมาจากเบราว์เซอร์ของผู้ใช้มาสร้างเป็น URL ในอีเมลโดยตรง
 + การทดสอบ: ผู้โจมตีสามารถปลอมแปลง Host Header ใน Request ให้เป็นเซิร์ฟเวอร์ของตนเอง (เช่น attacker.com) เมื่อระบบส่งเมลออกไป ลิงก์รีเซ็ตรหัสผ่านจะชี้ไปที่เซิร์ฟเวอร์ของผู้โจมตี ทำให้ผู้โจมตีสามารถดักจับ Token ลับของเหยื่อได้ทันที
     + **ขั้นตอนที่ 1: การดักจับ Request (Intercept)**
-        + กรอกอีเมลเหยื่อ (เช่น alice@alice.com) แล้วกดปุ่ม Reset ผู้โจมตีจะดัก Request นี้ไว้ก่อนจะถึง Server
-    +  **ขั้นตอนที่ 2: การปลอมแปลงโดเมน (Host Manipulation)**
-        + ผู้โจมตี จะทำการแก้ไขบรรทัด Host: จากเดิมที่เป็น IP ของแล็บ (เช่น 192.168.1.111) ให้กลายเป็นโดเมนของผู้โจมตี เช่น attacker.com
+     + กรอกอีเมลเหยื่อ (เช่น alice@alice.com) แล้วกดปุ่ม Reset host ต้องขึ้น 
 
+                host 192.168.1.111
+
+    ![test01)](Web-Sec/P08.jpg)
+
+    ![test01)](Web-Sec/P09.jpg)
+
+    + **ขั้นตอนที่ 2: การปลอมแปลงโดเมน (Host Manipulation)**
+        + ผู้โจมตี จะทำการแก้ไขบรรทัด Host: จากเดิมที่เป็น IP ของแล็บ (เช่น 192.168.1.111) ให้กลายเป็นโดเมนของผู้โจมตี เช่น attacker.com เราใช้ mod headers จำลองเป็นผู้โจมตี
                 POST /bWAPP/hostheader_2.php HTTP/1.1
-                Host: attacker.com  <-- (จุดที่แก้ไข)
+                Host: attacker-domain.com  <-- (จุดที่แก้ไข)
                 Content-Type: application/x-www-form-urlencoded
                 ...
                email=bee@bee.pwn&action=reset    
 
     + **ขั้นตอนที่ 3: ผลลัพธ์การโจมตี (Attack Result)**
-        + เมื่อกดปล่อย (Forward) Request ที่แก้แล้วไปที่ Server เหยื่อจะได้รับอีเมลที่มีลิงก์รีเซ็ตที่อันตราย เช่น ```http://attacker.com/bWAPP/secret_change.php?...```
+        + เมื่อกดปล่อย (Forward) Request ที่แก้แล้วไปที่ Server เหยื่อจะได้รับอีเมลที่มีลิงก์รีเซ็ตที่อันตราย เช่น ```http://attacker-domain.com/bWAPP/secret_change.php?...```
 
 # 3.การตรวจสอบด้วยเครื่องมือ (RIPS Scan)
 + เมื่อนำไฟล์ /var/www/html/bWAPP/hostheader_2.php ไปทำการสแกนด้วยเครื่องมือ RIPS ผลการวิเคราะห์ยืนยันว่าพบช่องโหว่ร้ายแรงจริงๆ ได้แก่
@@ -48,16 +54,21 @@
 
 ![ช่องโหว่](Web-Sec/P04.jpg)
 
-# 7.ทดสอบหลังการแก้ไข (Security Test)
-+ ทำการสแกนซ้ำ จพพบว่าเหลือช่องโหว่แค่ 1 ตัว
+# 7.ทดสอบหลังการแก้ไข (Security Test) และทดสอบ business function
++ ทำการสแกนซ้ำ จพพบว่าเหลือช่องโหว่แค่ 1 ตัว จากนั้นเราไปทดสอบส่ง e-mail อีกครั้ง
 
 ![Security Test](Web-Sec/P05.jpg)
 
-# 8. ทดสอบ business function
-+ ใส่ E-mail: เช่น alice@alice.com
-+ กด Reset ขึ้น Invalid user! 
-+ ถ้าใส่ ```alice@alice.com'"><script>alert(1)</script>```
-+ กด Rese ขึน Please enter a valid e-mail address! 
-+ **แสดงว่าสดงว่าการแก้โค้ด เพื่อปิดช่องโหว่ ได้อย่างสมบูรณ์ โดยที่ระบบยังคงให้บริการรีเซ็ตรหัสผ่านและเปลี่ยนระดับความปลอดภัยได้ตาม Business Function เดิม**
++ เรามาทดสอบหน้าหน้าเว็บนี้มีช่องโหว่ที่เรียกว่า Host Header Attack (Reset Poisoning) อีกรอบ
++ กรอกอีเมลalice@alice.com แล้วกดปุ่ม Reset
++ ปรากกฎว่า ยังเป็น Host: attacker-domain.com ไม่ตองตกใจเพราะเราแก้ไขช่องโหว่ไปแล้ว
 
-![Path](Web-Sec/P06.jpg)
+![Security Test](Web-Sec/P09.jpg)
+
++ เช็คที่ บที่แท็บ Cookies พบว่าคุกกี้ security_level ถูกบันทึกค่าที่ถูกต้องตามที่ระบบกำหนดไว้ (เช่น 0, 1, 2) และมีการเปลี่ยนรหัสเซสชันใหม่ด้วยคำสั่ง session_regenerate_id(true) ทำให้ผู้โจมตีไม่สามารถสวมรอยเซสชันเดิมได้
+
+![Security Test](Web-Sec/P10.jpg)
+
+## สรุป
+**การแก้โค้ด เพื่อปิดช่องโหว่ ได้อย่างสมบูรณ์ โดยที่ระบบยังคงให้บริการรีเซ็ตรหัสผ่านและเปลี่ยนระดับความปลอดภัยได้ตาม Business Function เดิม**
+
