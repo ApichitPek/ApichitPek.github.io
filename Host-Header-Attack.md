@@ -14,10 +14,11 @@
 
     ![test01)](Web-Sec/P08.jpg)
 
+    + **ขั้นตอนที่ 2: การปลอมแปลงโดเมน (Host Manipulation)**
+        + ผู้โจมตี จะทำการแก้ไขบรรทัด Host: จากเดิมที่เป็น IP ของแล็บ (เช่น 192.168.1.111) ให้กลายเป็นโดเมนของผู้โจมตี เช่น attacker-domain.com เราใช้ mod headers จำลองเป็นผู้โจมตี
+
     ![test01)](Web-Sec/P09.jpg)
 
-    + **ขั้นตอนที่ 2: การปลอมแปลงโดเมน (Host Manipulation)**
-        + ผู้โจมตี จะทำการแก้ไขบรรทัด Host: จากเดิมที่เป็น IP ของแล็บ (เช่น 192.168.1.111) ให้กลายเป็นโดเมนของผู้โจมตี เช่น attacker.com เราใช้ mod headers จำลองเป็นผู้โจมตี
                 POST /bWAPP/hostheader_2.php HTTP/1.1
                 Host: attacker-domain.com  <-- (จุดที่แก้ไข)
                 Content-Type: application/x-www-form-urlencoded
